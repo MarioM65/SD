@@ -1,23 +1,28 @@
 ﻿<Window x:Class="sd.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Sistema de Acesso" Height="400" Width="400">
+        Title="Sistema de Acesso" Height="420" Width="420"
+        Background="#FF1E1E2F" Foreground="White" WindowStartupLocation="CenterScreen">
+
     <Grid Margin="20">
-        <StackPanel>
-            <TextBlock Text="Porta COM:"/>
-            <TextBox x:Name="TxtPorta" Text="COM3" Margin="0,0,0,10"/>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Porta COM:" Margin="0,0,0,5"/>
+            <ComboBox x:Name="ComboPorta" Margin="0,0,0,10" Height="30"/>
 
-            <TextBlock Text="Velocidade (baud rate):"/>
-            <TextBox x:Name="TxtVelocidade" Text="9600" Margin="0,0,0,10"/>
+            <TextBlock Text="Velocidade (baud rate):" Margin="0,0,0,5"/>
+            <ComboBox x:Name="ComboBaud" Margin="0,0,0,20" Height="30"/>
 
-            <Button Content="Conectar" Click="BtnConectar_Click" Height="30" Margin="0,0,0,20"/>
+            <Button x:Name="BtnConectar" Content="Conectar" Click="BtnConectar_Click" Height="35"
+                    Background="#FF28A745" Foreground="White" FontWeight="Bold" Margin="0,0,0,20"/>
 
-            <TextBlock Text="Senha:"/>
-            <PasswordBox x:Name="SenhaBox" Margin="0,0,0,10"/>
+            <TextBlock Text="Senha:" Margin="0,0,0,5"/>
+            <PasswordBox x:Name="SenhaBox" Margin="0,0,0,10" Height="30" IsEnabled="False"/>
 
-            <Button Content="Entrar" Height="30" Click="BtnEntrar_Click"/>
+            <Button x:Name="BtnEntrar" Content="Entrar" Height="35" Click="BtnEntrar_Click"
+                    Background="#FF007BFF" Foreground="White" FontWeight="Bold" IsEnabled="False"/>
 
-            <TextBlock x:Name="StatusText" Margin="0,20,0,0" Foreground="Red" FontWeight="Bold"/>
+            <TextBlock x:Name="StatusText" Margin="0,20,0,0" Foreground="OrangeRed"
+                       FontWeight="Bold" TextAlignment="Center"/>
         </StackPanel>
     </Grid>
 </Window>

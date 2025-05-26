@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO.Ports;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Windows;
@@ -16,25 +17,44 @@ namespace sd
         public MainWindow()
         {
             InitializeComponent();
+            CarregarPortas();
+            CarregarBauds();
+        }
+
+        private void CarregarPortas()
+        {
+            string[] portas = SerialPort.GetPortNames();
+            ComboPorta.ItemsSource = portas;
+            if (portas.Any()) ComboPorta.SelectedIndex = 0;
+        }
+
+        private void CarregarBauds()
+        {
+            int[] bauds = { 9600, 14400, 19200, 38400, 57600, 115200 };
+            ComboBaud.ItemsSource = bauds;
+            ComboBaud.SelectedItem = 9600;
         }
 
         private void BtnConectar_Click(object sender, RoutedEventArgs e)
         {
-            string porta = TxtPorta.Text.Trim();
-            int baud;
-
-            if (!int.TryParse(TxtVelocidade.Text.Trim(), out baud))
+            if (ComboPorta.SelectedItem == null || ComboBaud.SelectedItem == null)
             {
-                StatusText.Text = "Velocidade inválida.";
+                StatusText.Text = "Selecione a porta e a velocidade.";
                 return;
             }
+
+            string porta = ComboPorta.SelectedItem.ToString();
+            int baud = (int)ComboBaud.SelectedItem;
 
             try
             {
                 serial = new SerialPort(porta, baud);
                 serial.Open();
                 conectado = true;
+
                 StatusText.Text = $"Conectado à {porta} @ {baud} bps.";
+                BtnEntrar.IsEnabled = true;
+                SenhaBox.IsEnabled = true;
             }
             catch (Exception ex)
             {
@@ -57,18 +77,18 @@ namespace sd
             {
                 tentativas = 0;
                 EnviarSerial("ABRIR");
-                StatusText.Text = "Acesso concedido.";
+                StatusText.Text = "✅ Acesso concedido.";
             }
             else
             {
                 tentativas++;
-                StatusText.Text = $"Senha incorreta. Tentativa {tentativas}/{maxTentativas}";
+                StatusText.Text = $"❌ Senha incorreta. Tentativa {tentativas}/{maxTentativas}";
 
                 if (tentativas >= maxTentativas)
                 {
                     EnviarSerial("ALERTA");
                     EnviarEmail();
-                    StatusText.Text = "Muitas tentativas. Alerta enviado!";
+                    StatusText.Text = "⚠️ Muitas tentativas. Alerta enviado!";
                     tentativas = 0;
                 }
             }
