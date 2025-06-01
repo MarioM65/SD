@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("sd")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a8a1349c88077555c5b6ebcecea2dccd0360469")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21dd9bf42cc3dc080b42618c8f4da379f208c584")]
 [assembly: System.Reflection.AssemblyProductAttribute("sd")]
 [assembly: System.Reflection.AssemblyTitleAttribute("sd")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
