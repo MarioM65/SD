@@ -1,28 +1,62 @@
 ﻿<Window x:Class="sd.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Sistema de Acesso" Height="420" Width="420"
-        Background="#FF1E1E2F" Foreground="White" WindowStartupLocation="CenterScreen">
+        Title="Sistema de Acesso" Height="480" Width="320"
+        Background="#FF121218" Foreground="White" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize">
 
-    <Grid Margin="20">
-        <StackPanel VerticalAlignment="Center">
-            <TextBlock Text="Porta COM:" Margin="0,0,0,5"/>
-            <ComboBox x:Name="ComboPorta" Margin="0,0,0,10" Height="30"/>
+    <Border CornerRadius="20" Background="#FF1E1E2F" BorderBrush="#FF3A3A50" BorderThickness="2"
+            Padding="15" Effect="{DynamicResource {x:Static SystemParameters.DropShadowKey}}">
+        <Grid>
+            <StackPanel VerticalAlignment="Center" Margin="10">
+                <!-- Título -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                    <Image Source="/Images/lock-icon.png" Width="24" Height="24" Margin="0,0,8,0"/>
+                    <TextBlock Text="Sistema de Acesso" FontSize="18" FontWeight="Bold" Foreground="#00D1FF"/>
+                </StackPanel>
 
-            <TextBlock Text="Velocidade (baud rate):" Margin="0,0,0,5"/>
-            <ComboBox x:Name="ComboBaud" Margin="0,0,0,20" Height="30"/>
+                <!-- Porta COM -->
+                <TextBlock Text="Porta COM:" Margin="0,0,0,5"/>
+                <ComboBox x:Name="ComboPorta" Margin="0,0,0,10" Height="30" Background="#333" Foreground="White"/>
 
-            <Button x:Name="BtnConectar" Content="Conectar" Click="BtnConectar_Click" Height="35"
-                    Background="#FF28A745" Foreground="White" FontWeight="Bold" Margin="0,0,0,20"/>
+                <!-- Baud rate -->
+                <TextBlock Text="Velocidade (baud rate):" Margin="0,0,0,5"/>
+                <ComboBox x:Name="ComboBaud" Margin="0,0,0,20" Height="30" Background="#333" Foreground="White"/>
 
-            <TextBlock Text="Senha:" Margin="0,0,0,5"/>
-            <PasswordBox x:Name="SenhaBox" Margin="0,0,0,10" Height="30" IsEnabled="False"/>
+                <!-- Botão conectar -->
+                <Button x:Name="BtnConectar" Content="Conectar" Click="BtnConectar_Click" Height="35"
+                        Background="#28A745" Foreground="White" FontWeight="Bold" Margin="0,0,0,20"
+                        BorderThickness="0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="5" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
 
-            <Button x:Name="BtnEntrar" Content="Entrar" Height="35" Click="BtnEntrar_Click"
-                    Background="#FF007BFF" Foreground="White" FontWeight="Bold" IsEnabled="False"/>
+                <!-- Senha -->
+                <TextBlock Text="Senha:" Margin="0,0,0,5"/>
+                <PasswordBox x:Name="SenhaBox" Margin="0,0,0,10" Height="30" Background="#333" Foreground="White" IsEnabled="False"/>
 
-            <TextBlock x:Name="StatusText" Margin="0,20,0,0" Foreground="OrangeRed"
-                       FontWeight="Bold" TextAlignment="Center"/>
-        </StackPanel>
-    </Grid>
+                <!-- Botão entrar -->
+                <Button x:Name="BtnEntrar" Content="Entrar" Height="35" Click="BtnEntrar_Click"
+                        Background="#007BFF" Foreground="White" FontWeight="Bold" IsEnabled="False"
+                        BorderThickness="0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="5" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Status -->
+                <TextBlock x:Name="StatusText" Margin="0,20,0,0" Foreground="OrangeRed"
+                           FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>
